@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		06A71C7E2AA9C55500794323 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A71C7D2AA9C55500794323 /* InputView.swift */; };
 		06E1C6E12AA9640B004BFBF1 /* amemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E1C6E02AA9640B004BFBF1 /* amemoApp.swift */; };
 		06E1C6E32AA9640B004BFBF1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E1C6E22AA9640B004BFBF1 /* ContentView.swift */; };
 		06E1C6E52AA9640D004BFBF1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06E1C6E42AA9640D004BFBF1 /* Assets.xcassets */; };
@@ -14,6 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		06A71C7D2AA9C55500794323 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
 		06E1C6DD2AA9640B004BFBF1 /* amemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = amemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06E1C6E02AA9640B004BFBF1 /* amemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = amemoApp.swift; sourceTree = "<group>"; };
 		06E1C6E22AA9640B004BFBF1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -55,6 +57,7 @@
 				06E1C6E22AA9640B004BFBF1 /* ContentView.swift */,
 				06E1C6E42AA9640D004BFBF1 /* Assets.xcassets */,
 				06E1C6E62AA9640D004BFBF1 /* Preview Content */,
+				06A71C7D2AA9C55500794323 /* InputView.swift */,
 			);
 			path = amemo;
 			sourceTree = "<group>";
@@ -137,6 +140,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06A71C7E2AA9C55500794323 /* InputView.swift in Sources */,
 				06E1C6E32AA9640B004BFBF1 /* ContentView.swift in Sources */,
 				06E1C6E12AA9640B004BFBF1 /* amemoApp.swift in Sources */,
 			);
@@ -273,8 +277,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -303,8 +307,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
