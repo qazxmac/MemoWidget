@@ -53,7 +53,7 @@ struct ContentView: View {
                             print(newValue)
                         }
                 }
-
+                
                 
                 VStack {
                     if !isTyping {
@@ -66,20 +66,6 @@ struct ContentView: View {
                     }
                 }
                 .offset(x: 20, y: -(3/4)*height/2 + 25)
-                
-//                HStack {
-//                    VStack {
-//                        if !isTyping {
-//                            Image("pngwing")
-//                                .resizable()
-//                                .scaledToFit()
-//                                .frame(width: 100, height: 100)
-//                        } else {
-//                            Spacer().frame(width: 100, height: 100)
-//                        }
-//                        Spacer()
-//                    }
-//                }
             }
             
             
@@ -218,7 +204,7 @@ extension View {
     func hideKeyboardWhenTappedAround() -> some View  {
         return self.onTapGesture {
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder),
-                  to: nil, from: nil, for: nil)
+                                            to: nil, from: nil, for: nil)
         }
     }
 }
