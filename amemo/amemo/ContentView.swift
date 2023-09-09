@@ -7,6 +7,7 @@
 
 import SwiftUI
 import WidgetKit
+import UserNotifications
 
 struct ContentView: View {
     
@@ -17,6 +18,7 @@ struct ContentView: View {
     @State var themeSelected: Theme = .YELLOW
     // Noti
     @State var toggleNoti: Bool = false
+    @State private var showingAlertNoti = false
     // Clipboard
     @State var toggleClipboard: Bool = false
     @State var lastClipboard: String = ""
@@ -27,10 +29,11 @@ struct ContentView: View {
     private let height = UIScreen.main.bounds.size.width - 40
     
     init() {
-        UITextView.appearance().backgroundColor = .clear
-        UITableView.appearance().backgroundColor = .clear
+//        UIFont.familyNames.forEach({ familyName in
+//            let fontNames = UIFont.fontNames(forFamilyName: familyName)
+//            print(familyName, fontNames)
+//        })
     }
-    
     var body: some View {
         VStack {
             // Input
@@ -64,12 +67,12 @@ struct ContentView: View {
                         .font({
                             switch themeSelected {
                             case .WHITE, .BLACK:
-                                return Font.system(size: UIFont.labelFontSize)
+                                return .custom("Charter-Roman", size: 18)
                             default:
                                 return .custom("SavoyeLetPlain", size: 25)
                             }
                         }())
-                    
+                        .transparentScrolling()
                         .overlay(
                             Group {
                                 switch themeSelected {
@@ -81,15 +84,17 @@ struct ContentView: View {
                                 }
                             }
                         )
-                    
-                    
                         .frame(width: height, height: (3/4)*height)
                         .cornerRadius(10)
                         .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification)) { _ in
-                            isTyping = true
+                            withAnimation {
+                                isTyping = true
+                            }
                         }
                         .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardDidHideNotification)) { _ in
-                            isTyping = false
+                            withAnimation {
+                                isTyping = false
+                            }
                         }
                         .focused($isFocusing)
                         .onAppear {
@@ -109,6 +114,7 @@ struct ContentView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(width: 100, height: 100)
+                            .transition(.move(edge: .top))
                     } else {
                         Spacer().frame(width: 100, height: 100)
                     }
@@ -179,8 +185,14 @@ struct ContentView: View {
                         .onChange(of: toggleNoti) { newValue in
                             if toggleNoti {
                                 print("ON")
+                                requestNotificationPermission(completion: { granted in
+                                    self.showingAlertNoti = !granted
+                                    UserDefaults(suiteName: "group.trung.trong.nguyen")?.set(granted, forKey: "amemo.noti")
+                                })
                             } else {
                                 print("OFF")
+                                UserDefaults(suiteName: "group.trung.trong.nguyen")?.set(false, forKey: "amemo.noti")
+                                UIApplication.shared.applicationIconBadgeNumber = 0
                             }
                         }
                     
@@ -211,17 +223,18 @@ struct ContentView: View {
                         Text("666")
                     }
                 }
+                .transparentScrolling()
                 
                 if isTyping {
                     HStack {
                         Color.black.opacity(0.9)
-                        Spacer()
                     }
-                    .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.25)))
+                    .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.15)))
                     .hideKeyboardWhenTappedAround()
                 }
             }
         }
+        
         .ignoresSafeArea(.keyboard, edges: .bottom)
         .background(.black)
         .onAppear {
@@ -235,6 +248,8 @@ struct ContentView: View {
             } else if newPhase == .background {
                 print("Background")
                 WidgetCenter.shared.reloadAllTimelines()
+                // Noti
+                figureNotification()
             }
         }
         .fullScreenCover(isPresented: $isPresentedInput, content: {
@@ -243,12 +258,29 @@ struct ContentView: View {
         .transaction({ transaction in
             transaction.disablesAnimations = true
         })
+        .alert(isPresented: $showingAlertNoti) {
+            Alert(
+                title: Text("Quyền thông báo chưa được bật"),
+                message: Text("Vui lòng vào cài đặt (Settings) để bật quyền thông báo cho ứng dụng."),
+                primaryButton: .default(Text("Cancel"), action: {
+                    toggleNoti = false
+                }),
+                secondaryButton: .default(Text("Settings"), action: {
+                    openAppSettings()
+                    toggleNoti = false
+                })
+            )
+        }
     }
     
     private func loadDataContent() {
+        // Content
         let content = UserDefaults(suiteName: "group.trung.trong.nguyen")?.string(forKey: "amemo.content") ?? ""
         inputedMemo = content.isEmpty ? "" : content.trimmingCharacters(in: .whitespacesAndNewlines) + "\n"
         print("aaaaa \(content)")
+        
+        // Noti
+        toggleNoti = UserDefaults(suiteName: "group.trung.trong.nguyen")?.bool(forKey: "amemo.noti") ?? false
         
         //        if toggleClipboard,
         //           let copied = UIPasteboard.general.string, lastClipboard != copied {
@@ -292,6 +324,51 @@ extension View {
         return self.onTapGesture {
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder),
                                             to: nil, from: nil, for: nil)
+        }
+    }
+}
+
+
+func requestNotificationPermission( completion: @escaping (_ granted: Bool) -> ()){
+    UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+        completion(granted)
+    }
+}
+
+// Hàm xử lý khi người dùng nhấn vào nút "Settings"
+func openAppSettings() {
+    guard let settingsURL = URL(string: UIApplication.openSettingsURLString) else {
+        return
+    }
+    
+    if UIApplication.shared.canOpenURL(settingsURL) {
+        UIApplication.shared.open(settingsURL)
+    }
+}
+
+func figureNotification() {
+    guard let data = UserDefaults(suiteName: "group.trung.trong.nguyen")?.string(forKey: "amemo.content"), !data.isEmpty,
+          let notiPermission = UserDefaults(suiteName: "group.trung.trong.nguyen")?.bool(forKey: "amemo.noti"), notiPermission
+    else { return }
+    UIApplication.shared.applicationIconBadgeNumber = 0
+    let content = UNMutableNotificationContent()
+    content.title = "amemo"
+    content.body = data
+    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+    let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+    UNUserNotificationCenter.current().add(request) { error in }
+    UIApplication.shared.applicationIconBadgeNumber = 1
+}
+
+public extension View {
+    func transparentScrolling() -> some View {
+        if #available(iOS 16.0, *) {
+            return scrollContentBackground(.hidden)
+        } else {
+            return onAppear {
+                UITextView.appearance().backgroundColor = .clear
+                UITableView.appearance().backgroundColor = .clear
+            }
         }
     }
 }

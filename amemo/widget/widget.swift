@@ -61,7 +61,7 @@ struct widgetEntryView : View {
                 .font({
                     switch themeSelected {
                     case .WHITE, .BLACK:
-                        return Font.system(size: UIFont.labelFontSize)
+                        return .custom("Charter-Roman", size: 18)
                     default:
                         return .custom("SavoyeLetPlain", size: 25)
                     }
