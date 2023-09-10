@@ -21,7 +21,6 @@ struct ContentView: View {
     @State private var showingAlertNoti = false
     // Clipboard
     @State var toggleClipboard: Bool = false
-    @State var lastClipboard: String = ""
     // Input
     @State private var isPresentedInput = false
     @State private var isTyping = false
@@ -29,10 +28,10 @@ struct ContentView: View {
     private let height = UIScreen.main.bounds.size.width - 40
     
     init() {
-//        UIFont.familyNames.forEach({ familyName in
-//            let fontNames = UIFont.fontNames(forFamilyName: familyName)
-//            print(familyName, fontNames)
-//        })
+        //        UIFont.familyNames.forEach({ familyName in
+        //            let fontNames = UIFont.fontNames(forFamilyName: familyName)
+        //            print(familyName, fontNames)
+        //        })
     }
     var body: some View {
         VStack {
@@ -201,9 +200,13 @@ struct ContentView: View {
                         Toggle("Auto paste from clipboard", isOn: $toggleClipboard)
                             .onChange(of: toggleClipboard) { newValue in
                                 if toggleClipboard {
-                                    print("ON")
+                                    print("Clipboard ON")
+                                    UserDefaults(suiteName: "group.trung.trong.nguyen")?.set(true, forKey: "amemo.clipboard")
+                                    updateClipBoard()
                                 } else {
-                                    print("OFF")
+                                    print("Clipboard OFF")
+                                    UserDefaults(suiteName: "group.trung.trong.nguyen")?.set(false, forKey: "amemo.clipboard")
+                                    UserDefaults(suiteName: "group.trung.trong.nguyen")?.set("", forKey: "amemo.lastclipboard")
                                 }
                             }
                     }
@@ -260,8 +263,8 @@ struct ContentView: View {
         })
         .alert(isPresented: $showingAlertNoti) {
             Alert(
-                title: Text("Quyền thông báo chưa được bật"),
-                message: Text("Vui lòng vào cài đặt (Settings) để bật quyền thông báo cho ứng dụng."),
+                title: Text("Please go to Settings to enable notification permissions for the app."),
+                message: Text("Notification permission allows you to view your memo on the lock screen as a notification. You will receive a notification of memo content immediately every time you exit the application"),
                 primaryButton: .default(Text("Cancel"), action: {
                     toggleNoti = false
                 }),
@@ -277,16 +280,28 @@ struct ContentView: View {
         // Content
         let content = UserDefaults(suiteName: "group.trung.trong.nguyen")?.string(forKey: "amemo.content") ?? ""
         inputedMemo = content.isEmpty ? "" : content.trimmingCharacters(in: .whitespacesAndNewlines) + "\n"
-        print("aaaaa \(content)")
         
         // Noti
         toggleNoti = UserDefaults(suiteName: "group.trung.trong.nguyen")?.bool(forKey: "amemo.noti") ?? false
         
-        //        if toggleClipboard,
-        //           let copied = UIPasteboard.general.string, lastClipboard != copied {
-        //            inputedMemo = inputedMemo.isEmpty ? (copied + "\n") : (content.trimmingCharacters(in: .whitespacesAndNewlines) + "\n" + copied + "\n")
-        //            lastClipboard = copied
-        //        }
+        // Clipboard
+        updateClipBoard()
+    }
+    
+    func updateClipBoard() {
+        let content = UserDefaults(suiteName: "group.trung.trong.nguyen")?.string(forKey: "amemo.content") ?? ""
+        if let clipBoard = UserDefaults(suiteName: "group.trung.trong.nguyen")?.bool(forKey: "amemo.clipboard"), clipBoard {
+            toggleClipboard = clipBoard
+            if let copied = UIPasteboard.general.string, toggleClipboard {
+                let lastClipboard = UserDefaults(suiteName: "group.trung.trong.nguyen")?.string(forKey: "amemo.lastclipboard") ?? ""
+                if lastClipboard != copied {
+                    inputedMemo = inputedMemo.isEmpty ? (copied + "\n") : (content.trimmingCharacters(in: .whitespacesAndNewlines) + "\n" + copied + "\n")
+                    UserDefaults(suiteName: "group.trung.trong.nguyen")?.set(copied, forKey: "amemo.lastclipboard")
+                }
+            }
+        } else {
+            toggleClipboard = false
+        }
     }
     
     private func updateUI() {
