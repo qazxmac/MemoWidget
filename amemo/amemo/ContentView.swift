@@ -90,7 +90,7 @@ struct ContentView: View {
                                 isTyping = true
                             }
                         }
-                        .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardDidHideNotification)) { _ in
+                        .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification)) { _ in
                             withAnimation {
                                 isTyping = false
                             }
@@ -134,7 +134,7 @@ struct ContentView: View {
                                 .background(.yellow)
                                 .foregroundColor(.black)
                                 .font(.custom("SavoyeLetPlain", size: 20))
-                                .cornerRadius(10)
+                                .cornerRadius(12)
                                 .gesture(
                                     TapGesture()
                                         .onEnded { _ in
@@ -145,12 +145,14 @@ struct ContentView: View {
                                 )
                             Spacer()
                             Text("Hello xin chao")
+                                .padding(/*@START_MENU_TOKEN@*/.all, 10.0/*@END_MENU_TOKEN@*/)
                                 .frame(width: 100, height: 100)
                                 .background(.white)
                                 .foregroundColor(.black)
-                                .cornerRadius(10)
+                                .font(.custom("Charter-Roman", size: 12))
+                                .cornerRadius(12)
                                 .overlay(
-                                    RoundedRectangle(cornerRadius: 10)
+                                    RoundedRectangle(cornerRadius: 12)
                                         .stroke(.gray, lineWidth: 0.5)
                                 )
                                 .gesture(
@@ -163,10 +165,12 @@ struct ContentView: View {
                                 )
                             Spacer()
                             Text("Hello xin chao")
+                                .padding(/*@START_MENU_TOKEN@*/.all, 10.0/*@END_MENU_TOKEN@*/)
                                 .frame(width: 100, height: 100)
                                 .background(.black)
                                 .foregroundColor(.white)
-                                .cornerRadius(10)
+                                .font(.custom("Charter-Roman", size: 12))
+                                .cornerRadius(12)
                                 .gesture(
                                     TapGesture()
                                         .onEnded { _ in
@@ -232,7 +236,7 @@ struct ContentView: View {
                     HStack {
                         Color.black.opacity(0.9)
                     }
-                    .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.15)))
+                    .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.1)))
                     .hideKeyboardWhenTappedAround()
                 }
             }
