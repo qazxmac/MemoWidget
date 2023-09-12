@@ -16,6 +16,8 @@ struct ContentView: View {
     
     // Theme
     @State var themeSelected: Theme = .YELLOW
+    @State var handwritingFont: Bool = true
+    @State var selectedFont: FontType = .handwritingFont
     // Noti
     @State var toggleNoti: Bool = false
     @State private var showingAlertNoti = false
@@ -28,10 +30,10 @@ struct ContentView: View {
     private let height = UIScreen.main.bounds.size.width - 40
     
     init() {
-                UIFont.familyNames.forEach({ familyName in
-                    let fontNames = UIFont.fontNames(forFamilyName: familyName)
-                    print(familyName, fontNames)
-                })
+        UIFont.familyNames.forEach({ familyName in
+            let fontNames = UIFont.fontNames(forFamilyName: familyName)
+            print(familyName, fontNames)
+        })
     }
     var body: some View {
         VStack {
@@ -63,14 +65,7 @@ struct ContentView: View {
                                 return Color.black
                             }
                         }())
-                        .font({
-                            switch themeSelected {
-                            case .WHITE, .BLACK:
-                                return .custom("Charter-Roman", size: 18)
-                            default:
-                                return .custom("SavoyeLetPlain", size: 25)
-                            }
-                        }())
+                        .font(selectedFont.font)
                         .transparentScrolling()
                         .overlay(
                             Group {
@@ -126,63 +121,89 @@ struct ContentView: View {
                 List {
                     VStack {
                         Spacer()
-                        Text("Style (Widget will also be applied)")
+                        Text("Theme (your widget will also be applied)")
+                            .foregroundColor(Color(hue: 0.532, saturation: 0.409, brightness: 0.451))
+                            .multilineTextAlignment(.leading)
                         Spacer()
                         HStack {
-                            Text("Hello xin chao")
-                                .frame(width: 100, height: 100)
-                                .background(.yellow)
-                                .foregroundColor(.black)
-                                .font(.custom("SavoyeLetPlain", size: 20))
-                                .cornerRadius(12)
-                                .gesture(
-                                    TapGesture()
-                                        .onEnded { _ in
-                                            print("tap 1")
-                                            themeSelected = .YELLOW
-                                            UserDefaults(suiteName: "group.trung.trong.nguyen")?.set(themeSelected.rawValue, forKey: "amemo.theme")
-                                        }
-                                )
+                            ZStack {
+                                Text(inputedMemo.isEmpty ? "Default Text" : inputedMemo)
+                                    .padding(.vertical, 5)
+                                    .padding(.horizontal, 10)
+                                    .frame(width: 100, height: 100)
+                                    .background(.yellow)
+                                    .foregroundColor(.black)
+                                    .font(selectedFont.font)
+                                    .cornerRadius(12)
+                                    .gesture(
+                                        TapGesture()
+                                            .onEnded { _ in
+                                                print("tap 1")
+                                                themeSelected = .YELLOW
+                                                UserDefaults(suiteName: "group.trung.trong.nguyen")?.set(themeSelected.rawValue, forKey: "amemo.theme")
+                                            }
+                                    )
+                                if themeSelected == .YELLOW {
+                                    PenImgView()
+                                }
+                            }
                             Spacer()
-                            Text("Hello xin chao")
-                                .padding(/*@START_MENU_TOKEN@*/.all, 10.0/*@END_MENU_TOKEN@*/)
-                                .frame(width: 100, height: 100)
-                                .background(.white)
-                                .foregroundColor(.black)
-                                .font(.custom("Charter-Roman", size: 12))
-                                .cornerRadius(12)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 12)
-                                        .stroke(.gray, lineWidth: 0.5)
-                                )
-                                .gesture(
-                                    TapGesture()
-                                        .onEnded { _ in
-                                            print("tap 2")
-                                            themeSelected = .WHITE
-                                            UserDefaults(suiteName: "group.trung.trong.nguyen")?.set(themeSelected.rawValue, forKey: "amemo.theme")
-                                        }
-                                )
+                            ZStack {
+                                Text(inputedMemo.isEmpty ? "Default Text" : inputedMemo)
+                                    .padding(.vertical, 5)
+                                    .padding(.horizontal, 10)
+                                    .frame(width: 100, height: 100)
+                                    .background(.white)
+                                    .foregroundColor(.black)
+                                    .font(selectedFont.font)
+                                    .cornerRadius(12)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 12)
+                                            .stroke(.gray, lineWidth: 1)
+                                    )
+                                    .gesture(
+                                        TapGesture()
+                                            .onEnded { _ in
+                                                print("tap 2")
+                                                themeSelected = .WHITE
+                                                UserDefaults(suiteName: "group.trung.trong.nguyen")?.set(themeSelected.rawValue, forKey: "amemo.theme")
+                                            }
+                                    )
+                                if themeSelected == .WHITE {
+                                    PenImgView()
+                                }
+                            }
                             Spacer()
-                            Text("Hello xin chao")
-                                .padding(/*@START_MENU_TOKEN@*/.all, 10.0/*@END_MENU_TOKEN@*/)
-                                .frame(width: 100, height: 100)
-                                .background(.black)
-                                .foregroundColor(.white)
-                                .font(.custom("Charter-Roman", size: 12))
-                                .cornerRadius(12)
-                                .gesture(
-                                    TapGesture()
-                                        .onEnded { _ in
-                                            print("tap 3")
-                                            themeSelected = .BLACK
-                                            UserDefaults(suiteName: "group.trung.trong.nguyen")?.set(themeSelected.rawValue, forKey: "amemo.theme")
-                                        }
-                                )
+                            ZStack {
+                                Text(inputedMemo.isEmpty ? "Default Text" : inputedMemo)
+                                    .padding(.vertical, 5)
+                                    .padding(.horizontal, 10)
+                                    .frame(width: 100, height: 100)
+                                    .background(.black)
+                                    .foregroundColor(.white)
+                                    .font(selectedFont.font)
+                                    .cornerRadius(12)
+                                    .gesture(
+                                        TapGesture()
+                                            .onEnded { _ in
+                                                print("tap 3")
+                                                themeSelected = .BLACK
+                                                UserDefaults(suiteName: "group.trung.trong.nguyen")?.set(themeSelected.rawValue, forKey: "amemo.theme")
+                                            }
+                                    )
+                                if themeSelected == .BLACK {
+                                    PenImgView()
+                                }
+                            }
                         }
                         Spacer()
                     }
-                    
+                    // Handwriting font
+                    Toggle("Handwriting Font", isOn: $handwritingFont)
+                        .onChange(of: handwritingFont) { newValue in
+                            selectedFont = newValue ? .handwritingFont : .systemFont
+                            UserDefaults(suiteName: "group.trung.trong.nguyen")?.set(selectedFont.rawValue, forKey: "amemo.handwriting")
+                        }
                     // Notification
                     Toggle("Memo as a notification", isOn: $toggleNoti)
                         .onChange(of: toggleNoti) { newValue in
@@ -200,34 +221,32 @@ struct ContentView: View {
                         }
                     
                     // Paste clipboard
-                    HStack {
-                        Toggle("Auto paste from clipboard", isOn: $toggleClipboard)
-                            .onChange(of: toggleClipboard) { newValue in
-                                if toggleClipboard {
-                                    print("Clipboard ON")
-                                    UserDefaults(suiteName: "group.trung.trong.nguyen")?.set(true, forKey: "amemo.clipboard")
-                                    updateClipBoard()
-                                } else {
-                                    print("Clipboard OFF")
-                                    UserDefaults(suiteName: "group.trung.trong.nguyen")?.set(false, forKey: "amemo.clipboard")
-                                    UserDefaults(suiteName: "group.trung.trong.nguyen")?.set("", forKey: "amemo.lastclipboard")
-                                }
+                    Toggle("Auto paste from clipboard", isOn: $toggleClipboard)
+                        .onChange(of: toggleClipboard) { newValue in
+                            if toggleClipboard {
+                                print("Clipboard ON")
+                                UserDefaults(suiteName: "group.trung.trong.nguyen")?.set(true, forKey: "amemo.clipboard")
+                                updateClipBoard()
+                            } else {
+                                print("Clipboard OFF")
+                                UserDefaults(suiteName: "group.trung.trong.nguyen")?.set(false, forKey: "amemo.clipboard")
+                                UserDefaults(suiteName: "group.trung.trong.nguyen")?.set("", forKey: "amemo.lastclipboard")
                             }
-                    }
+                        }
                     
                     // Share memo
                     HStack {
-                        Text("Share memo")
-                        Spacer()
-                        
+                        Text("Share")
                         Image(systemName: "square.and.arrow.up")
-                    }
-                    
-                    // TODO: -
-                    HStack {
-                        Text("555")
+                        Text("|")
+                        Text("Save")
+                        Image(systemName: "square.and.arrow.down")
+                        Text("|")
+                        Text("Copy")
+                        Image(systemName: "doc.on.doc")
                         Spacer()
-                        Text("666")
+                    }.onTapGesture {
+                        shareContent()
                     }
                 }
                 .transparentScrolling()
@@ -312,6 +331,18 @@ struct ContentView: View {
         guard let themeNumber = UserDefaults(suiteName: "group.trung.trong.nguyen")?.integer(forKey: "amemo.theme") else { return }
         self.themeSelected = Theme.convertToTheme(themeNumber)
     }
+    
+    private func shareContent() {
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+              let rootViewController = windowScene.windows.first?.rootViewController else {
+            return
+        }
+        
+        let contentToShared = UserDefaults(suiteName: "group.trung.trong.nguyen")?.string(forKey: "amemo.content") ?? ""
+        
+        let activityViewController = UIActivityViewController(activityItems: [contentToShared], applicationActivities: nil)
+        rootViewController.present(activityViewController, animated: true, completion: nil)
+    }
 }
 
 enum Theme: Int {
@@ -388,6 +419,43 @@ public extension View {
                 UITextView.appearance().backgroundColor = .clear
                 UITableView.appearance().backgroundColor = .clear
             }
+        }
+    }
+}
+
+//struct ToggleView: View {
+//    @Binding var isOn: Bool
+//
+//    var body: some View {
+//        Toggle("Toggle", isOn: $isOn)
+//            .padding()
+//    }
+//}
+
+enum FontType: Int {
+    case handwritingFont = 0
+    case systemFont = 1
+    
+    var font: Font {
+        switch self {
+        case .handwritingFont:
+            return .custom("SavoyeLetPlain", size: 25)
+        case .systemFont:
+            return .custom("Charter-Roman", size: 16)
+        }
+    }
+}
+
+struct PenImgView: View {
+    
+    var body: some View {
+        VStack {
+            Spacer()
+            Image("pngwing pen")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 50, height: 50)
+                .offset(x: 40, y: -5)
         }
     }
 }

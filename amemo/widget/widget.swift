@@ -42,12 +42,15 @@ struct widgetEntryView : View {
     var entry: Provider.Entry
     // Theme
     @State var themeSelected: Theme = .YELLOW
+    @State var selectedFont: FontType = .handwritingFont
+    
     var body: some View {
         
         let content = UserDefaults(suiteName: "group.trung.trong.nguyen")?.string(forKey: "amemo.content") ?? ""
         
         VStack {
             Text(content)
+                .font(selectedFont.font)
                 .foregroundColor({
                     switch themeSelected {
                     case .WHITE:
@@ -56,14 +59,6 @@ struct widgetEntryView : View {
                         return Color.white
                     default:
                         return Color.black
-                    }
-                }())
-                .font({
-                    switch themeSelected {
-                    case .WHITE, .BLACK:
-                        return .custom("Charter-Roman", size: 18)
-                    default:
-                        return .custom("SavoyeLetPlain", size: 25)
                     }
                 }())
         }
@@ -93,6 +88,8 @@ struct widgetEntryView : View {
     private func updateUI() {
         guard let themeNumber = UserDefaults(suiteName: "group.trung.trong.nguyen")?.integer(forKey: "amemo.theme") else { return }
         self.themeSelected = Theme.convertToTheme(themeNumber)
+        let isHandwritingFont = UserDefaults(suiteName: "group.trung.trong.nguyen")?.integer(forKey: "amemo.handwriting") ?? 0
+        selectedFont = FontType.convertToFont(isHandwritingFont)
     }
 }
 
@@ -129,6 +126,29 @@ enum Theme: Int {
             return .BLACK
         default:
             return .YELLOW
+        }
+    }
+}
+
+enum FontType: Int {
+    case handwritingFont = 0
+    case systemFont = 1
+    
+    var font: Font {
+        switch self {
+        case .handwritingFont:
+            return .custom("SavoyeLetPlain", size: 25)
+        case .systemFont:
+            return .custom("Charter-Roman", size: 16)
+        }
+    }
+    
+    static func convertToFont (_ value: Int) -> FontType {
+        switch value {
+        case 1:
+            return .systemFont
+        default:
+            return .handwritingFont
         }
     }
 }
