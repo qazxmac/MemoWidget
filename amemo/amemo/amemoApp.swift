@@ -12,6 +12,7 @@ struct amemoApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+            //TestCode()
         }
     }
 }

@@ -28,10 +28,10 @@ struct ContentView: View {
     private let height = UIScreen.main.bounds.size.width - 40
     
     init() {
-        //        UIFont.familyNames.forEach({ familyName in
-        //            let fontNames = UIFont.fontNames(forFamilyName: familyName)
-        //            print(familyName, fontNames)
-        //        })
+                UIFont.familyNames.forEach({ familyName in
+                    let fontNames = UIFont.fontNames(forFamilyName: familyName)
+                    print(familyName, fontNames)
+                })
     }
     var body: some View {
         VStack {
@@ -260,7 +260,7 @@ struct ContentView: View {
             }
         }
         .fullScreenCover(isPresented: $isPresentedInput, content: {
-            InputView( isPresented: $isPresentedInput)
+            //InputView( isPresented: $isPresentedInput)
         })
         .transaction({ transaction in
             transaction.disablesAnimations = true

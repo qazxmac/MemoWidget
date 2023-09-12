@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		06A71C7E2AA9C55500794323 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A71C7D2AA9C55500794323 /* InputView.swift */; };
+		060504FA2AADC170009912FA /* TestCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060504F92AADC0A1009912FA /* TestCode.swift */; };
+		060505032AAEA1BE009912FA /* amemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060505022AAEA1BE009912FA /* amemoTests.swift */; };
+		0605050A2AAEA416009912FA /* SampleClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060505092AAEA416009912FA /* SampleClass.swift */; };
+		0605050B2AAEA416009912FA /* SampleClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060505092AAEA416009912FA /* SampleClass.swift */; };
 		06A71C862AAAFEA200794323 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06A71C852AAAFEA200794323 /* WidgetKit.framework */; };
 		06A71C882AAAFEA200794323 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06A71C872AAAFEA200794323 /* SwiftUI.framework */; };
 		06A71C8B2AAAFEA200794323 /* widgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A71C8A2AAAFEA200794323 /* widgetBundle.swift */; };
@@ -21,6 +24,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		060505042AAEA1BE009912FA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 06E1C6D52AA9640B004BFBF1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 06E1C6DC2AA9640B004BFBF1;
+			remoteInfo = amemo;
+		};
 		06A71C912AAAFEA800794323 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 06E1C6D52AA9640B004BFBF1 /* Project object */;
@@ -45,7 +55,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		06A71C7D2AA9C55500794323 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
+		060504F92AADC0A1009912FA /* TestCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCode.swift; sourceTree = "<group>"; };
+		060504FB2AAEA095009912FA /* TestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = TestPlan.xctestplan; sourceTree = "<group>"; };
+		060505002AAEA1BE009912FA /* amemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = amemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		060505022AAEA1BE009912FA /* amemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = amemoTests.swift; sourceTree = "<group>"; };
+		060505092AAEA416009912FA /* SampleClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleClass.swift; sourceTree = "<group>"; };
 		06A71C832AAAFEA200794323 /* widgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = widgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		06A71C852AAAFEA200794323 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		06A71C872AAAFEA200794323 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -63,6 +77,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		060504FD2AAEA1BE009912FA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		06A71C802AAAFEA200794323 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -82,6 +103,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		060505012AAEA1BE009912FA /* amemoTests */ = {
+			isa = PBXGroup;
+			children = (
+				060505022AAEA1BE009912FA /* amemoTests.swift */,
+			);
+			path = amemoTests;
+			sourceTree = "<group>";
+		};
 		06A71C842AAAFEA200794323 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -105,9 +134,12 @@
 		06E1C6D42AA9640B004BFBF1 = {
 			isa = PBXGroup;
 			children = (
+				060504FB2AAEA095009912FA /* TestPlan.xctestplan */,
+				060504F92AADC0A1009912FA /* TestCode.swift */,
 				06A71C992AAAFF7000794323 /* widgetExtension.entitlements */,
 				06E1C6DF2AA9640B004BFBF1 /* amemo */,
 				06A71C892AAAFEA200794323 /* widget */,
+				060505012AAEA1BE009912FA /* amemoTests */,
 				06A71C842AAAFEA200794323 /* Frameworks */,
 				06E1C6DE2AA9640B004BFBF1 /* Products */,
 			);
@@ -118,6 +150,7 @@
 			children = (
 				06E1C6DD2AA9640B004BFBF1 /* amemo.app */,
 				06A71C832AAAFEA200794323 /* widgetExtension.appex */,
+				060505002AAEA1BE009912FA /* amemoTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -130,7 +163,7 @@
 				06E1C6E22AA9640B004BFBF1 /* ContentView.swift */,
 				06E1C6E42AA9640D004BFBF1 /* Assets.xcassets */,
 				06E1C6E62AA9640D004BFBF1 /* Preview Content */,
-				06A71C7D2AA9C55500794323 /* InputView.swift */,
+				060505092AAEA416009912FA /* SampleClass.swift */,
 			);
 			path = amemo;
 			sourceTree = "<group>";
@@ -146,6 +179,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		060504FF2AAEA1BE009912FA /* amemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 060505062AAEA1BE009912FA /* Build configuration list for PBXNativeTarget "amemoTests" */;
+			buildPhases = (
+				060504FC2AAEA1BE009912FA /* Sources */,
+				060504FD2AAEA1BE009912FA /* Frameworks */,
+				060504FE2AAEA1BE009912FA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				060505052AAEA1BE009912FA /* PBXTargetDependency */,
+			);
+			name = amemoTests;
+			productName = amemoTests;
+			productReference = 060505002AAEA1BE009912FA /* amemoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		06A71C822AAAFEA200794323 /* widgetExtension */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 06A71C942AAAFEA800794323 /* Build configuration list for PBXNativeTarget "widgetExtension" */;
@@ -192,6 +243,10 @@
 				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					060504FF2AAEA1BE009912FA = {
+						CreatedOnToolsVersion = 14.3.1;
+						TestTargetID = 06E1C6DC2AA9640B004BFBF1;
+					};
 					06A71C822AAAFEA200794323 = {
 						CreatedOnToolsVersion = 14.3.1;
 					};
@@ -215,11 +270,19 @@
 			targets = (
 				06E1C6DC2AA9640B004BFBF1 /* amemo */,
 				06A71C822AAAFEA200794323 /* widgetExtension */,
+				060504FF2AAEA1BE009912FA /* amemoTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		060504FE2AAEA1BE009912FA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		06A71C812AAAFEA200794323 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -240,6 +303,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		060504FC2AAEA1BE009912FA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0605050B2AAEA416009912FA /* SampleClass.swift in Sources */,
+				060505032AAEA1BE009912FA /* amemoTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		06A71C7F2AAAFEA200794323 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -253,8 +325,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				06A71C7E2AA9C55500794323 /* InputView.swift in Sources */,
+				0605050A2AAEA416009912FA /* SampleClass.swift in Sources */,
 				06E1C6E32AA9640B004BFBF1 /* ContentView.swift in Sources */,
+				060504FA2AADC170009912FA /* TestCode.swift in Sources */,
 				06E1C6E12AA9640B004BFBF1 /* amemoApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -262,6 +335,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		060505052AAEA1BE009912FA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 06E1C6DC2AA9640B004BFBF1 /* amemo */;
+			targetProxy = 060505042AAEA1BE009912FA /* PBXContainerItemProxy */;
+		};
 		06A71C922AAAFEA800794323 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 06A71C822AAAFEA200794323 /* widgetExtension */;
@@ -270,6 +348,44 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		060505072AAEA1BE009912FA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8DWF4448F3;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = trung.trong.nguyen.amemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/amemo.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/amemo";
+			};
+			name = Debug;
+		};
+		060505082AAEA1BE009912FA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8DWF4448F3;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = trung.trong.nguyen.amemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/amemo.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/amemo";
+			};
+			name = Release;
+		};
 		06A71C952AAAFEA800794323 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -509,6 +625,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		060505062AAEA1BE009912FA /* Build configuration list for PBXNativeTarget "amemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				060505072AAEA1BE009912FA /* Debug */,
+				060505082AAEA1BE009912FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		06A71C942AAAFEA800794323 /* Build configuration list for PBXNativeTarget "widgetExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
