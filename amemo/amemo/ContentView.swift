@@ -110,7 +110,28 @@ struct ContentView: View {
                             .frame(width: 100, height: 100)
                             .transition(.move(edge: .top))
                     } else {
-                        Spacer().frame(width: 100, height: 100)
+                        VStack {
+                            HStack {
+                                Group {
+                                    Image(systemName: "doc.on.doc.fill")
+                                    Text("Paste")
+                                }.onTapGesture {
+                                    guard let copied = UIPasteboard.general.string else { return }
+                                    inputedMemo = inputedMemo.isEmpty ? copied : (inputedMemo.trimmingCharacters(in: .whitespacesAndNewlines) + "\n" + copied)
+                                }
+                                //Spacer().frame(width: 100, height: 100)
+                                Spacer()
+                                Group {
+                                    Image(systemName: "trash.slash.circle")
+                                    Text("Clear all")
+                                }.onTapGesture {
+                                    inputedMemo = ""
+                                }
+                                Spacer().frame(width: 40)
+                            }
+                            .opacity(0.25)
+                            .padding(.bottom, 40.0)
+                        }
                     }
                 }
                 .offset(x: 20, y: -(3/4)*height/2 + 25)
@@ -252,9 +273,17 @@ struct ContentView: View {
                 .transparentScrolling()
                 
                 if isTyping {
-                    HStack {
-                        Color.black.opacity(0.9)
+                    VStack {
+                        HStack {
+                            Spacer()
+                            Image(systemName: "gear")
+                            Text("Settings")
+                            Spacer().frame(width: 20)
+                        }.opacity(0.25)
+                        //Color.black.opacity(0.9)
+                        Spacer()
                     }
+                    .background(.black).opacity(0.9)
                     .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.1)))
                     .hideKeyboardWhenTappedAround()
                 }

@@ -71,6 +71,8 @@
 		060505002AAEA1BE009912FA /* amemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = amemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		060505022AAEA1BE009912FA /* amemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = amemoTests.swift; sourceTree = "<group>"; };
 		060505092AAEA416009912FA /* SampleClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleClass.swift; sourceTree = "<group>"; };
+		065C17642AB18B3800D9CBBB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		065C17652AB18B6700D9CBBB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		06A71C832AAAFEA200794323 /* widgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = widgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		06A71C852AAAFEA200794323 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		06A71C872AAAFEA200794323 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -128,6 +130,7 @@
 		060505012AAEA1BE009912FA /* amemoTests */ = {
 			isa = PBXGroup;
 			children = (
+				065C17652AB18B6700D9CBBB /* Info.plist */,
 				060505022AAEA1BE009912FA /* amemoTests.swift */,
 			);
 			path = amemoTests;
@@ -182,6 +185,7 @@
 		06E1C6DF2AA9640B004BFBF1 /* amemo */ = {
 			isa = PBXGroup;
 			children = (
+				065C17642AB18B3800D9CBBB /* Info.plist */,
 				06A71C982AAAFF6200794323 /* amemo.entitlements */,
 				06E1C6E02AA9640B004BFBF1 /* amemoApp.swift */,
 				06E1C6E22AA9640B004BFBF1 /* ContentView.swift */,
@@ -444,6 +448,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8DWF4448F3;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = amemoTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = trung.trong.nguyen.amemoTests;
@@ -463,6 +468,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8DWF4448F3;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = amemoTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = trung.trong.nguyen.amemoTests;
@@ -659,6 +665,7 @@
 				DEVELOPMENT_TEAM = 8DWF4448F3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = amemo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -691,6 +698,7 @@
 				DEVELOPMENT_TEAM = 8DWF4448F3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = amemo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
