@@ -142,6 +142,7 @@ struct ContentView: View {
                     VStack {
                         Spacer()
                         HStack {
+                            Image(systemName: "gear")
                             Text("Options")
                                 .fontWeight(.heavy)
                             Spacer()
@@ -280,10 +281,10 @@ struct ContentView: View {
                 if isTyping {
                     VStack {
                         HStack {
-                            Spacer()
+                            Spacer().frame(width: 20)
                             Image(systemName: "gear")
                             Text("Options")
-                            Spacer().frame(width: 20)
+                            Spacer()
                         }.opacity(0.25)
                         //Color.black.opacity(0.9)
                         Spacer()
