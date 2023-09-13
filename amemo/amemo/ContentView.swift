@@ -119,7 +119,6 @@ struct ContentView: View {
                                     guard let copied = UIPasteboard.general.string else { return }
                                     inputedMemo = inputedMemo.isEmpty ? copied : (inputedMemo.trimmingCharacters(in: .whitespacesAndNewlines) + "\n" + copied)
                                 }
-                                //Spacer().frame(width: 100, height: 100)
                                 Spacer()
                                 Group {
                                     Image(systemName: "trash.slash.circle")
@@ -142,10 +141,11 @@ struct ContentView: View {
                 List {
                     VStack {
                         Spacer()
-                        Text("Theme (your widget will also be applied)")
-                            .foregroundColor(Color(hue: 0.532, saturation: 0.409, brightness: 0.451))
-                            .multilineTextAlignment(.leading)
-                        Spacer()
+                        HStack {
+                            Text("Options")
+                                .fontWeight(.heavy)
+                            Spacer()
+                        }
                         HStack {
                             ZStack {
                                 Text(inputedMemo.isEmpty ? "Default Text" : inputedMemo)
@@ -218,6 +218,10 @@ struct ContentView: View {
                             }
                         }
                         Spacer()
+                        Text("Theme (your widget will also be applied)")
+                            .foregroundColor(Color(hue: 0.532, saturation: 0.409, brightness: 0.451))
+                            .font(.system(size: 12))
+                        Spacer()
                     }
                     // Handwriting font
                     Toggle("Handwriting Font", isOn: $handwritingFont)
@@ -269,6 +273,7 @@ struct ContentView: View {
                     }.onTapGesture {
                         shareContent()
                     }
+                    Spacer()
                 }
                 .transparentScrolling()
                 
@@ -277,7 +282,7 @@ struct ContentView: View {
                         HStack {
                             Spacer()
                             Image(systemName: "gear")
-                            Text("Settings")
+                            Text("Options")
                             Spacer().frame(width: 20)
                         }.opacity(0.25)
                         //Color.black.opacity(0.9)
