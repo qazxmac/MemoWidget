@@ -2,24 +2,35 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>NSExtension</key>
+	<key>NSExtension</key>
+	<dict>
+		<key>NSExtensionAttributes</key>
         <dict>
-            <key>NSExtensionAttributes</key>
-            <dict>
-                <key>NSExtensionActivationRule</key>
-                <dict>
-                    <key>NSExtensionActivationSupportsText</key>
-                    <true/>
-                    <key>NSExtensionActivationSupportsWebURLWithMaxCount</key>
-                    <integer>1</integer>
-                    <key>NSExtensionActivationSupportsImageWithMaxCount</key>
-                    <integer>1</integer>
-                </dict>
-            </dict>
-            <key>NSExtensionMainStoryboard</key>
-            <string>MainInterface</string>
-            <key>NSExtensionPointIdentifier</key>
-            <string>com.apple.share-services</string>
+            <key>NSExtensionActivationRule</key>
+            <string>SUBQUERY (
+                extensionItems,
+                $extensionItem,
+                SUBQUERY (
+                $extensionItem.attachments,
+                $attachment,
+                (
+                ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO "com.adobe.pdf"
+                || ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO "public.image"
+                || ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO "public.plain-text"
+                || ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO "public.png"
+                || ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO "public.jpeg"
+                || ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO "public.jpeg-2000"
+                || ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO "com.compuserve.gif"
+                || ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO "com.microsoft.bmp"
+                )
+                ).@count == 1
+                ).@count == 1
+            </string>
         </dict>
+		<key>NSExtensionMainStoryboard</key>
+		<string>MainInterface</string>
+		<key>NSExtensionPointIdentifier</key>
+		<string>com.apple.share-services</string>
+	</dict>
 </dict>
 </plist>
