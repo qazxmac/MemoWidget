@@ -11,7 +11,7 @@ import SwiftUI
 struct amemoApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().preferredColorScheme(.dark)
             //TestCode()
         }
     }

@@ -140,16 +140,17 @@ struct ContentView: View {
                 // List
                 List {
                     VStack {
-                        Spacer()
                         HStack {
-                            Image(systemName: "gear")
-                            Text("Options")
-                                .fontWeight(.heavy)
+                            if !isTyping {
+                                Image(systemName: "gear")
+                                Text("Options")
+                                    .fontWeight(.heavy)
+                            }
                             Spacer()
-                        }
+                        }.frame(height: 50)
                         HStack {
                             ZStack {
-                                Text(inputedMemo.isEmpty ? "Default Text" : inputedMemo)
+                                Text(inputedMemo.isEmpty ? "Your memo look like this" : inputedMemo)
                                     .padding(.vertical, 5)
                                     .padding(.horizontal, 10)
                                     .frame(width: 100, height: 100)
@@ -171,7 +172,7 @@ struct ContentView: View {
                             }
                             Spacer()
                             ZStack {
-                                Text(inputedMemo.isEmpty ? "Default Text" : inputedMemo)
+                                Text(inputedMemo.isEmpty ? "Your memo look like this" : inputedMemo)
                                     .padding(.vertical, 5)
                                     .padding(.horizontal, 10)
                                     .frame(width: 100, height: 100)
@@ -197,7 +198,7 @@ struct ContentView: View {
                             }
                             Spacer()
                             ZStack {
-                                Text(inputedMemo.isEmpty ? "Default Text" : inputedMemo)
+                                Text(inputedMemo.isEmpty ? "Your memo look like this" : inputedMemo)
                                     .padding(.vertical, 5)
                                     .padding(.horizontal, 10)
                                     .frame(width: 100, height: 100)
@@ -286,7 +287,6 @@ struct ContentView: View {
                             Text("Options")
                             Spacer()
                         }.opacity(0.25)
-                        //Color.black.opacity(0.9)
                         Spacer()
                     }
                     .background(.black).opacity(0.9)
