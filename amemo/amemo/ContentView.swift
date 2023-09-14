@@ -180,10 +180,6 @@ struct ContentView: View {
                                     .foregroundColor(.black)
                                     .font(selectedFont.font)
                                     .cornerRadius(12)
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: 12)
-                                            .stroke(.gray, lineWidth: 1)
-                                    )
                                     .gesture(
                                         TapGesture()
                                             .onEnded { _ in
