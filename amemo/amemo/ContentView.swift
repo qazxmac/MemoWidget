@@ -70,7 +70,7 @@ struct ContentView: View {
                                 switch themeSelected {
                                 case .BLACK:
                                     RoundedRectangle(cornerRadius: 10)
-                                        .stroke(Color.white, lineWidth: 0.5)
+                                        .stroke(Color.white, lineWidth: 1)
                                 default:
                                     EmptyView()
                                 }
@@ -126,7 +126,7 @@ struct ContentView: View {
                                 }
                                 Spacer().frame(width: 40)
                             }
-                            .opacity(0.25)
+                            .opacity(0.3)
                             .padding(.bottom, 40.0)
                         }
                     }
@@ -280,7 +280,7 @@ struct ContentView: View {
                             Image(systemName: "gear")
                             Text("Options")
                             Spacer()
-                        }.opacity(0.25)
+                        }.opacity(0.3)
                         Spacer()
                     }
                     .background(.black).opacity(0.9)
@@ -330,9 +330,9 @@ struct ContentView: View {
         }
         .alert(isPresented: $isShowingUpdateAlert) {
             Alert(
-                title: Text("Cập nhật ứng dụng"),
-                message: Text("Có một phiên bản mới của ứng dụng đã có sẵn. Vui lòng cập nhật để tiếp tục sử dụng."),
-                dismissButton: .default(Text("Cập nhật"), action: {
+                title: Text("Update App"),
+                message: Text("A new version of the app is available. Please update to continue using."),
+                dismissButton: .default(Text("Update"), action: {
                     if let url = appStoreURL {
                         UIApplication.shared.open(url, options: [:], completionHandler: nil)
                     }
