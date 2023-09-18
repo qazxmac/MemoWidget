@@ -343,7 +343,7 @@ struct ContentView: View {
     
     private func loadDataContent() {
         // Content
-        let content = UserDefaults(suiteName: "group.trung.trong.nguyen")?.string(forKey: "amemo.content") ?? ""
+        let content = UserDefaults(suiteName: "group.trung.trong.nguyen")?.string(forKey: "amemo.content") ?? "- This Widget automatically updates content immediately after taking notes.\n- The keyboard will appear immediately and be ready for input when you touch this Widget.\n- Change themes and fonts to your liking.\n- Option to send a notification of noted content immediately after leaving the application.\n- Option to paste previously copied content when opening the application.\n- Share noted content."
         inputedMemo = content.isEmpty ? "" : content.trimmingCharacters(in: .whitespacesAndNewlines) + "\n"
         
         // Noti
