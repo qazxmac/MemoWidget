@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import FirebaseCore
+import FirebaseRemoteConfig
 
 @main
 struct amemoApp: App {
@@ -14,5 +16,15 @@ struct amemoApp: App {
             ContentView().preferredColorScheme(.dark)
             //TestCode()
         }
+    }
+    
+    init() {
+        FirebaseApp.configure()
+        
+        let remoteConfig = RemoteConfig.remoteConfig()
+        let remoteConfigSettings = RemoteConfigSettings()
+        remoteConfigSettings.minimumFetchInterval = 0
+        remoteConfig.configSettings = remoteConfigSettings
+        remoteConfig.setDefaults(fromPlist: "RemoteConfigKeys")
     }
 }

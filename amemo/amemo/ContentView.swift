@@ -8,6 +8,7 @@
 import SwiftUI
 import WidgetKit
 import UserNotifications
+import FirebaseRemoteConfig
 
 struct ContentView: View {
     
@@ -28,13 +29,10 @@ struct ContentView: View {
     @State private var isTyping = false
     @FocusState var isFocusing: Bool
     private let height = UIScreen.main.bounds.size.width - 40
+    // Alert
+    @State private var isShowingUpdateAlert = false
+    @State private var appStoreURL: URL?
     
-    init() {
-        UIFont.familyNames.forEach({ familyName in
-            let fontNames = UIFont.fontNames(forFamilyName: familyName)
-            print(familyName, fontNames)
-        })
-    }
     var body: some View {
         VStack {
             // Input
@@ -302,6 +300,8 @@ struct ContentView: View {
                 print("Active")
                 isFocusing = true
                 loadDataContent()
+                
+                checkAppVersion()
             } else if newPhase == .background {
                 print("Background")
                 WidgetCenter.shared.reloadAllTimelines()
@@ -325,6 +325,17 @@ struct ContentView: View {
                 secondaryButton: .default(Text("Settings"), action: {
                     openAppSettings()
                     toggleNoti = false
+                })
+            )
+        }
+        .alert(isPresented: $isShowingUpdateAlert) {
+            Alert(
+                title: Text("Cập nhật ứng dụng"),
+                message: Text("Có một phiên bản mới của ứng dụng đã có sẵn. Vui lòng cập nhật để tiếp tục sử dụng."),
+                dismissButton: .default(Text("Cập nhật"), action: {
+                    if let url = appStoreURL {
+                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                    }
                 })
             )
         }
@@ -374,6 +385,39 @@ struct ContentView: View {
         let activityViewController = UIActivityViewController(activityItems: [contentToShared], applicationActivities: nil)
         rootViewController.present(activityViewController, animated: true, completion: nil)
     }
+    
+    func checkAppVersion() {
+        let remoteConfig = RemoteConfig.remoteConfig()
+
+        // Thiết lập giá trị mặc định cho phiên bản ứng dụng
+        let defaultConfig: [String: Any] = [
+            "app_version": "1.0.0", // Phiên bản mặc định của ứng dụng
+            "app_store_url": "" // URL App Store mặc định
+        ]
+        remoteConfig.setDefaults(defaultConfig as? [String: NSObject])
+
+        // Lấy giá trị từ Remote Config
+        remoteConfig.fetch { (status, error) in
+            if status == .success {
+                remoteConfig.activate { (changed, error) in
+                    let remoteVersion = remoteConfig["app_version"].stringValue ?? ""
+                    let currentVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? ""
+
+                    // So sánh phiên bản hiện tại với phiên bản từ Remote Config
+                    if remoteVersion.compare(currentVersion, options: .numeric) == .orderedDescending {
+                        let appStoreURLString = remoteConfig["app_store_url"].stringValue ?? ""
+                        if let url = URL(string: appStoreURLString) {
+                            appStoreURL = url
+                            isShowingUpdateAlert = true
+                            
+                            print("fffff \(appStoreURL)")
+                        }
+                    }
+                }
+            }
+        }
+    }
+
 }
 
 enum Theme: Int {

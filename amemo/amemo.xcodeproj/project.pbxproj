@@ -11,12 +11,16 @@
 		060505032AAEA1BE009912FA /* amemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060505022AAEA1BE009912FA /* amemoTests.swift */; };
 		0605050A2AAEA416009912FA /* SampleClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060505092AAEA416009912FA /* SampleClass.swift */; };
 		0605050B2AAEA416009912FA /* SampleClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060505092AAEA416009912FA /* SampleClass.swift */; };
+		0646BB5F2AB83ECD0024A6D8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0646BB5E2AB83ECD0024A6D8 /* GoogleService-Info.plist */; };
 		06A71C862AAAFEA200794323 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06A71C852AAAFEA200794323 /* WidgetKit.framework */; };
 		06A71C882AAAFEA200794323 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06A71C872AAAFEA200794323 /* SwiftUI.framework */; };
 		06A71C8B2AAAFEA200794323 /* widgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A71C8A2AAAFEA200794323 /* widgetBundle.swift */; };
 		06A71C8D2AAAFEA200794323 /* widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A71C8C2AAAFEA200794323 /* widget.swift */; };
 		06A71C8F2AAAFEA800794323 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06A71C8E2AAAFEA800794323 /* Assets.xcassets */; };
 		06A71C932AAAFEA800794323 /* widgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 06A71C832AAAFEA200794323 /* widgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		06DE74042AB8412F00BAF4BE /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 06DE74032AB8412F00BAF4BE /* FirebaseRemoteConfig */; };
+		06DE74062AB8412F00BAF4BE /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 06DE74052AB8412F00BAF4BE /* FirebaseRemoteConfigSwift */; };
+		06DE74082AB8447B00BAF4BE /* RemoteConfigKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 06DE74072AB8447B00BAF4BE /* RemoteConfigKeys.plist */; };
 		06E1C6E12AA9640B004BFBF1 /* amemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E1C6E02AA9640B004BFBF1 /* amemoApp.swift */; };
 		06E1C6E32AA9640B004BFBF1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E1C6E22AA9640B004BFBF1 /* ContentView.swift */; };
 		06E1C6E52AA9640D004BFBF1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06E1C6E42AA9640D004BFBF1 /* Assets.xcassets */; };
@@ -71,6 +75,7 @@
 		060505002AAEA1BE009912FA /* amemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = amemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		060505022AAEA1BE009912FA /* amemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = amemoTests.swift; sourceTree = "<group>"; };
 		060505092AAEA416009912FA /* SampleClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleClass.swift; sourceTree = "<group>"; };
+		0646BB5E2AB83ECD0024A6D8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		065C17642AB18B3800D9CBBB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		065C17652AB18B6700D9CBBB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		06A71C832AAAFEA200794323 /* widgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = widgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -82,6 +87,7 @@
 		06A71C902AAAFEA800794323 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		06A71C982AAAFF6200794323 /* amemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = amemo.entitlements; sourceTree = "<group>"; };
 		06A71C992AAAFF7000794323 /* widgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = widgetExtension.entitlements; sourceTree = "<group>"; };
+		06DE74072AB8447B00BAF4BE /* RemoteConfigKeys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RemoteConfigKeys.plist; sourceTree = "<group>"; };
 		06E1C6DD2AA9640B004BFBF1 /* amemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = amemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06E1C6E02AA9640B004BFBF1 /* amemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = amemoApp.swift; sourceTree = "<group>"; };
 		06E1C6E22AA9640B004BFBF1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -114,6 +120,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06DE74042AB8412F00BAF4BE /* FirebaseRemoteConfig in Frameworks */,
+				06DE74062AB8412F00BAF4BE /* FirebaseRemoteConfigSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -185,6 +193,7 @@
 		06E1C6DF2AA9640B004BFBF1 /* amemo */ = {
 			isa = PBXGroup;
 			children = (
+				0646BB5E2AB83ECD0024A6D8 /* GoogleService-Info.plist */,
 				065C17642AB18B3800D9CBBB /* Info.plist */,
 				06A71C982AAAFF6200794323 /* amemo.entitlements */,
 				06E1C6E02AA9640B004BFBF1 /* amemoApp.swift */,
@@ -192,6 +201,7 @@
 				06E1C6E42AA9640D004BFBF1 /* Assets.xcassets */,
 				06E1C6E62AA9640D004BFBF1 /* Preview Content */,
 				060505092AAEA416009912FA /* SampleClass.swift */,
+				06DE74072AB8447B00BAF4BE /* RemoteConfigKeys.plist */,
 			);
 			path = amemo;
 			sourceTree = "<group>";
@@ -268,6 +278,10 @@
 				06FB05842AB00C2B00AEFE6A /* PBXTargetDependency */,
 			);
 			name = amemo;
+			packageProductDependencies = (
+				06DE74032AB8412F00BAF4BE /* FirebaseRemoteConfig */,
+				06DE74052AB8412F00BAF4BE /* FirebaseRemoteConfigSwift */,
+			);
 			productName = amemo;
 			productReference = 06E1C6DD2AA9640B004BFBF1 /* amemo.app */;
 			productType = "com.apple.product-type.application";
@@ -323,6 +337,9 @@
 				Base,
 			);
 			mainGroup = 06E1C6D42AA9640B004BFBF1;
+			packageReferences = (
+				06DE74022AB8412F00BAF4BE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 06E1C6DE2AA9640B004BFBF1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -357,6 +374,8 @@
 			files = (
 				06E1C6E82AA9640D004BFBF1 /* Preview Assets.xcassets in Resources */,
 				06E1C6E52AA9640D004BFBF1 /* Assets.xcassets in Resources */,
+				06DE74082AB8447B00BAF4BE /* RemoteConfigKeys.plist in Resources */,
+				0646BB5F2AB83ECD0024A6D8 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -817,6 +836,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		06DE74022AB8412F00BAF4BE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = exactVersion;
+				version = 10.15.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		06DE74032AB8412F00BAF4BE /* FirebaseRemoteConfig */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 06DE74022AB8412F00BAF4BE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseRemoteConfig;
+		};
+		06DE74052AB8412F00BAF4BE /* FirebaseRemoteConfigSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 06DE74022AB8412F00BAF4BE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseRemoteConfigSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 06E1C6D52AA9640B004BFBF1 /* Project object */;
 }
