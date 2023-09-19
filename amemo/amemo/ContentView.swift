@@ -343,7 +343,7 @@ struct ContentView: View {
     
     private func loadDataContent() {
         // Content
-        let content = UserDefaults(suiteName: "group.trung.trong.nguyen")?.string(forKey: "amemo.content") ?? "- This Widget automatically updates content immediately after taking notes.\n- The keyboard will appear immediately and be ready for input when you touch this Widget.\n- Change themes and fonts to your liking.\n- Option to send a notification of noted content immediately after leaving the application.\n- Option to paste previously copied content when opening the application.\n- Share noted content."
+        let content = UserDefaults(suiteName: "group.trung.trong.nguyen")?.string(forKey: "amemo.content") ?? "Hey! Here is a sample note\n1. This Widget automatically updates content immediately after taking notes.\n2. The keyboard will appear immediately and be ready for input when you touch here.\n3. Change themes and fonts to your liking.\n4. Option to send a notification of noted content immediately after leaving the application.\n5. Option to paste previously copied content when opening the application.\n6. Share noted content."
         inputedMemo = content.isEmpty ? "" : content.trimmingCharacters(in: .whitespacesAndNewlines) + "\n"
         
         // Noti
@@ -409,8 +409,6 @@ struct ContentView: View {
                         if let url = URL(string: appStoreURLString) {
                             appStoreURL = url
                             isShowingUpdateAlert = true
-                            
-                            print("fffff \(appStoreURL)")
                         }
                     }
                 }
