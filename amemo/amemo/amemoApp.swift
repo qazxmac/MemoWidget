@@ -8,6 +8,7 @@
 import SwiftUI
 import FirebaseCore
 import FirebaseRemoteConfig
+import GoogleMobileAds
 
 @main
 struct amemoApp: App {
@@ -20,11 +21,12 @@ struct amemoApp: App {
     
     init() {
         FirebaseApp.configure()
-        
         let remoteConfig = RemoteConfig.remoteConfig()
         let remoteConfigSettings = RemoteConfigSettings()
         remoteConfigSettings.minimumFetchInterval = 0
         remoteConfig.configSettings = remoteConfigSettings
         remoteConfig.setDefaults(fromPlist: "RemoteConfigKeys")
+        
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
     }
 }

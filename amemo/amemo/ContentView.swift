@@ -9,6 +9,7 @@ import SwiftUI
 import WidgetKit
 import UserNotifications
 import FirebaseRemoteConfig
+import GoogleMobileAds
 
 struct ContentView: View {
     
@@ -32,6 +33,12 @@ struct ContentView: View {
     // Alert
     @State private var isShowingUpdateAlert = false
     @State private var appStoreURL: URL?
+    
+    // Ads
+    @State private var canShowApp: Bool = false
+    
+    // Copy
+    @State private var copyState = "Copy all"
     
     var body: some View {
         VStack {
@@ -82,6 +89,7 @@ struct ContentView: View {
                             withAnimation {
                                 isTyping = true
                             }
+                            copyState = "Copy all"
                         }
                         .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification)) { _ in
                             withAnimation {
@@ -97,6 +105,8 @@ struct ContentView: View {
                         .onChange(of: inputedMemo) { newValue in
                             print(newValue)
                             UserDefaults(suiteName: "group.trung.trong.nguyen")?.set(inputedMemo, forKey: "amemo.content")
+                            
+                            copyState = "Copy all"
                         }
                 }
                 
@@ -269,6 +279,11 @@ struct ContentView: View {
                     }.onTapGesture {
                         shareContent()
                     }
+                    
+                    if canShowApp {
+                        BannerView().frame(height: 250)
+                    }
+                    
                     Spacer()
                 }
                 .transparentScrolling()
@@ -276,10 +291,19 @@ struct ContentView: View {
                 if isTyping {
                     VStack {
                         HStack {
-                            Spacer().frame(width: 20)
-                            Image(systemName: "gear")
-                            Text("Options")
+                                Spacer().frame(width: 20)
+                                Image(systemName: "gear")
+                                Text("Options")
                             Spacer()
+                            
+                            Group {
+                                Image(systemName: "doc.on.doc")
+                                Text(copyState)
+                                Spacer().frame(width: 20)
+                            }.onTapGesture {
+                                UIPasteboard.general.string = inputedMemo
+                                copyState = "Copied"
+                            }
                         }.opacity(0.3)
                         Spacer()
                     }
@@ -411,6 +435,12 @@ struct ContentView: View {
                             isShowingUpdateAlert = true
                         }
                     }
+                    
+                    // Show ads
+                    if let canShowAdsRemote = remoteConfig["can_show_ads"].stringValue,
+                        let valueInt = Int(canShowAdsRemote) {
+                        canShowApp = (valueInt == 1)
+                    }
                 }
             }
         }
@@ -496,15 +526,6 @@ public extension View {
     }
 }
 
-//struct ToggleView: View {
-//    @Binding var isOn: Bool
-//
-//    var body: some View {
-//        Toggle("Toggle", isOn: $isOn)
-//            .padding()
-//    }
-//}
-
 enum FontType: Int {
     case handwritingFont = 0
     case systemFont = 1
@@ -530,5 +551,21 @@ struct PenImgView: View {
                 .frame(width: 50, height: 50)
                 .offset(x: 40, y: -5)
         }
+    }
+}
+
+struct BannerView: UIViewRepresentable {
+    func makeUIView(context: Context) -> GADBannerView {
+        let bannerView = GADBannerView(adSize: GADAdSizeBanner)
+        bannerView.adUnitID = "ca-app-pub-3502939148318468~9313575820" // Thay YOUR_AD_UNIT_ID bằng ID đơn vị quảng cáo của bạn
+        if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+            bannerView.rootViewController = scene.windows.first?.rootViewController
+        }
+        bannerView.load(GADRequest())
+        return bannerView
+    }
+    
+    func updateUIView(_ uiView: GADBannerView, context: Context) {
+        // Không cần cập nhật gì khi view đã được hiển thị
     }
 }
