@@ -438,7 +438,10 @@ struct ContentView: View {
                     
                     // Show ads
                     if let canShowAdsRemote = remoteConfig["can_show_ads"].stringValue,
-                        let valueInt = Int(canShowAdsRemote) {
+                        let valueInt = Int(canShowAdsRemote),
+                       let remoteAdUnitID = remoteConfig["ad_unit_id"].stringValue, !remoteAdUnitID.isEmpty {
+                        
+                        UserDefaults(suiteName: "group.trung.trong.nguyen")?.set(remoteAdUnitID, forKey: "amemo.adunitid")
                         canShowApp = (valueInt == 1)
                     }
                 }
@@ -557,7 +560,7 @@ struct PenImgView: View {
 struct BannerView: UIViewRepresentable {
     func makeUIView(context: Context) -> GADBannerView {
         let bannerView = GADBannerView(adSize: GADAdSizeBanner)
-        bannerView.adUnitID = "ca-app-pub-3502939148318468~9313575820" // Thay YOUR_AD_UNIT_ID bằng ID đơn vị quảng cáo của bạn
+        bannerView.adUnitID = UserDefaults(suiteName: "group.trung.trong.nguyen")?.string(forKey: "amemo.adunitid") ?? "" // Thay YOUR_AD_UNIT_ID bằng ID đơn vị quảng cáo của bạn
         if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
             bannerView.rootViewController = scene.windows.first?.rootViewController
         }
